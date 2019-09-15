@@ -1,10 +1,12 @@
-const path = require('path');
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: {
+    app: ['babel-polyfill', './src/index.js']
+  },
   devtool: 'inline-source-map',
   output: {
     filename: 'bundle.js',
@@ -26,10 +28,12 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-react'],
-            plugins: ["@babel/plugin-proposal-class-properties"]
+            plugins: [
+              '@babel/plugin-proposal-class-properties',
+            ]
           }
         }
       }
     ]
   }
-};
+}
