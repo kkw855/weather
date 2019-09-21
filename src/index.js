@@ -3,13 +3,11 @@ import React from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CssBaseline } from "@material-ui/core";
-import Slider from "./swiper/Slider";
 
 function App() {
   return (
     <div style={{height: "100vh", width: "100vw"}}>
       <CssBaseline />
-      <Slider />
     </div>
   );
 }
@@ -37,3 +35,10 @@ async function requestWeather() {
 console.log("End");
 
 ReactDOM.render(<App />, window.document.querySelector("#react-root"));
+
+navigator.geolocation.getCurrentPosition(function(position) {
+  console.log("getCurrentPosition", position.coords.latitude, position.coords.longitude);
+});
+const watchID = navigator.geolocation.watchPosition(function(position) {
+  console.log("watchPosition", position.coords.latitude, position.coords.longitude);
+});
